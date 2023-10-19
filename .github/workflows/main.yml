@@ -36,7 +36,6 @@ jobs:
     - name: echo env
       run: |
         echo "var WEBAPP_NAME: $WEBAPP_NAME"
-        echo "var WEBAPP_NAME_IN_ENV: $vars.WEBAPP_NAME_IN_ENV"
     
     - name: Zip artifact for deployment
       run: |

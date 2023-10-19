@@ -10,8 +10,8 @@ on:
       WEBAPP_NAME_IN_SECRET:
         required: true
 
-env:
-  WEBAPP_NAME: my-app-name
+# env:
+#   WEBAPP_NAME: my-app-name
 
 jobs:
   deploy:
@@ -31,7 +31,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: my-app
+          name: node-app
 
       - name: unzip artifact for deployment
         run: unzip release.zip
@@ -42,6 +42,7 @@ jobs:
         run: |
           echo "var Dev WEBAPP_NAME: $WEBAPP_NAME"
           echo "var Dev WEBAPP_NAME_IN_ENV: $vars.WEBAPP_NAME_IN_ENV"
+          echo "var Dev WEBAPP_NAME_IN_ENV: $WEBAPP_NAME_IN_ENV"
           echo "var Dev WEBAPP_NAME_IN_SECRET: $secrets.WEBAPP_NAME_IN_SECRET"
 
       - name: "Deploy to Prod WebApp"
