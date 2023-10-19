@@ -15,18 +15,18 @@ env:
 
 jobs:
   deploy:
-    name: Deploy to ${ { inputs.target-env } }
+    name: Deploy to ${{ inputs.target-env }}
     permissions:
       contents: none
     runs-on: ubuntu-latest
     environment:
-      name: ${ { inputs.target-env } }
+      name: ${{ inputs.target-env }}
 
     steps:
-      - run: echo "🎉 target evn ${ { inputs.target-env} }"
+      - run: echo "🎉 target evn ${{ inputs.target-env }}"
       - run: echo "🎉 target evn inputs.target-env"
-      - run: echo "🍏 is Dev  ${ { inputs.target-env } } == 'Development'"
-      - run: echo "🐧 is Prod  ${ { inputs.target-env } } == 'Production'"
+      - run: echo "🍏 is Dev  ${{ inputs.target-env }} == 'Development'"
+      - run: echo "🐧 is Prod  ${{ inputs.target-env }} == 'Production'"
 
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
