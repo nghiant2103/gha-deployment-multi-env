@@ -41,13 +41,13 @@ jobs:
         id: deploy-to-webapp-dev
         run: |
           echo "var Dev WEBAPP_NAME: $WEBAPP_NAME"
-          echo "var Dev WEBAPP_NAME_IN_ENV: $WEBAPP_NAME_IN_ENV"
-          echo "var Dev WEBAPP_NAME_IN_SECRET: $WEBAPP_NAME_IN_SECRET"
+          echo "var Dev WEBAPP_NAME_IN_ENV: $vars.WEBAPP_NAME_IN_ENV"
+          echo "var Dev WEBAPP_NAME_IN_SECRET: $secrets.WEBAPP_NAME_IN_SECRET"
 
       - name: "Deploy to Prod WebApp"
         if:  inputs.target-env == 'Production'
         id: deploy-to-webapp-prod
         run: |
           echo "var Prod WEBAPP_NAME: $WEBAPP_NAME"
-          echo "var Prod WEBAPP_NAME_IN_ENV: $WEBAPP_NAME_IN_ENV"
-          echo "var Prod WEBAPP_NAME_IN_SECRET: $WEBAPP_NAME_IN_SECRET"
+          echo "var Prod WEBAPP_NAME_IN_ENV: $vars.WEBAPP_NAME_IN_ENV"
+          echo "var Prod WEBAPP_NAME_IN_SECRET: $secrets.WEBAPP_NAME_IN_SECRET"
