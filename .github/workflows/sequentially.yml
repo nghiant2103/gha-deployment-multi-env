@@ -1,0 +1,25 @@
+name: Build and deploy Angular app to an Azure Web App
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["sequentially"]
+
+concurrency:
+  group: ${{ github.head_ref ||  github.ref }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v3
+      - name: waiting
+        run: |
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "ref: ${{ github.ref }}"
+          echo "sequentially 01"
+
+      # - name: Sleep for 60 seconds
+      #   run: sleep 60s
+      #   shell: bash
