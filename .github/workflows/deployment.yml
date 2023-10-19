@@ -19,8 +19,8 @@ jobs:
     permissions:
       contents: none
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ inputs.target-env }}
+    # environment:
+    #   name: ${{ inputs.target-env }}
 
     steps:
       - run: echo "🎉 target evn ${{ inputs.target-env }}"
