@@ -10,6 +10,9 @@ on:
       WEBAPP_NAME_IN_SECRET:
         required: true
 
+env:
+  WEBAPP_NAME: my-app-name
+
 jobs:
   deploy:
     name: Deploy to ${ { inputs.target-env } }

@@ -57,5 +57,5 @@ jobs:
         target: [Development, Production ]
     uses: ./.github/workflows/deployment.yml
     with:
-      target-env: ${ { matrix.target } }
+      target-env: ${{ matrix.target }}
     secrets: inherit
