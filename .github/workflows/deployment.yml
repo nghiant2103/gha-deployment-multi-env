@@ -11,7 +11,7 @@ on:
         required: true
 
 env:
-  WEBAPP_NAME: ${{ GITHUB_REF##*/ }}
+  WEBAPP_NAME: my-app-name
 
 jobs:
   deploy:
@@ -23,32 +23,31 @@ jobs:
       name: ${{ inputs.target-env }}
 
     steps:
-      - run: echo "WEBAPP_NAME $WEBAPP_NAME"
-      # - run: echo "🎉 target evn ${{ inputs.target-env }}"
-      # - run: echo "🎉 target evn inputs.target-env"
-      # - run: echo "🍏 is Dev  ${{ inputs.target-env }} == 'Development'"
-      # - run: echo "🐧 is Prod  ${{ inputs.target-env }} == 'Production'"
+      - run: echo "🎉 target evn ${{ inputs.target-env }}"
+      - run: echo "🎉 target evn inputs.target-env"
+      - run: echo "🍏 is Dev  ${{ inputs.target-env }} == 'Development'"
+      - run: echo "🐧 is Prod  ${{ inputs.target-env }} == 'Production'"
 
-      # - name: Download artifact from build job
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: my-app
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: my-app
 
-      # - name: unzip artifact for deployment
-      #   run: unzip release.zip
+      - name: unzip artifact for deployment
+        run: unzip release.zip
 
-      # - name: "Deploy to Dev WebApp"
-      #   if:  inputs.target-env == 'Development'
-      #   id: deploy-to-webapp-dev
-      #   run: |
-      #     echo "var Dev WEBAPP_NAME: $WEBAPP_NAME"
-      #     echo "var Dev WEBAPP_NAME_IN_ENV: ${{ vars.WEBAPP_NAME_IN_ENV }}"
-      #     echo "var Dev WEBAPP_NAME_IN_ENV: ${{ secrets.WEBAPP_NAME_IN_SECRET }}"
+      - name: "Deploy to Dev WebApp"
+        if:  inputs.target-env == 'Development'
+        id: deploy-to-webapp-dev
+        run: |
+          echo "var Dev WEBAPP_NAME: $WEBAPP_NAME"
+          echo "var Dev WEBAPP_NAME_IN_ENV: ${{ vars.WEBAPP_NAME_IN_ENV }}"
+          echo "var Dev WEBAPP_NAME_IN_ENV: ${{ secrets.WEBAPP_NAME_IN_SECRET }}"
 
-      # - name: "Deploy to Prod WebApp"
-      #   if:  inputs.target-env == 'Production'
-      #   id: deploy-to-webapp-prod
-      #   run: |
-      #     echo "var Prod WEBAPP_NAME: $WEBAPP_NAME"
-      #     echo "var Prod WEBAPP_NAME_IN_ENV: ${{ vars.WEBAPP_NAME_IN_ENV }}"
-      #     echo "var Prod WEBAPP_NAME_IN_SECRET: ${{ secrets.WEBAPP_NAME_IN_SECRET }}"
+      - name: "Deploy to Prod WebApp"
+        if:  inputs.target-env == 'Production'
+        id: deploy-to-webapp-prod
+        run: |
+          echo "var Prod WEBAPP_NAME: $WEBAPP_NAME"
+          echo "var Prod WEBAPP_NAME_IN_ENV: ${{ vars.WEBAPP_NAME_IN_ENV }}"
+          echo "var Prod WEBAPP_NAME_IN_SECRET: ${{ secrets.WEBAPP_NAME_IN_SECRET }}"
