@@ -38,7 +38,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: echo env
       run: |
-        echo "var WEBAPP_NAME: $WEBAPP_NAME_IN_ENV"
+        echo "var WEBAPP_NAME: ${{ vars.WEBAPP_NAME_IN_ENV }}"
     
   #   - name: Zip artifact for deployment
   #     run: |
