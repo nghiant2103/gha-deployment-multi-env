@@ -3,8 +3,7 @@ name: sequentially
 on:
   workflow_dispatch:
   push:
-    branches:
-      - sequentially
+    branches: ["sequentially"]
 
 concurrency:
   group: ${{ github.head_ref ||  github.ref }}
