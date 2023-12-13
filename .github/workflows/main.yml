@@ -35,7 +35,7 @@ jobs:
     - name: Set current date as env variable
       run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
-    - uses: actions/checkout@v3
+    # - uses: actions/checkout@v3
     - name: echo env
       run: |
         echo "var WEBAPP_NAME: $WEBAPP_NAME"
