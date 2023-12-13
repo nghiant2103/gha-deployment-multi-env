@@ -1,0 +1,25 @@
+name: sequentially
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["sequentially"]
+
+concurrency:
+  group: ${{ github.head_ref ||  github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v3
+      - name: waiting
+        run: |
+          echo "head_ref: ${{ github.head_ref }}"
+          echo "ref: ${{ github.ref }}"
+
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash
