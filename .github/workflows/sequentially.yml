@@ -19,7 +19,7 @@ jobs:
           echo "head_ref: ${{ github.head_ref }}"
           echo "ref: ${{ github.ref }}"
 
-      # - name: Sleep for 60 seconds
-      #   run: sleep 60s
-      #   shell: bash
+      - name: Sleep for 60 seconds
+        run: sleep 60s
+        shell: bash
 
