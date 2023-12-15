@@ -1,0 +1,29 @@
+name: Workflow dispatch
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Envirnment"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - prod
+      project:
+        type: string
+        required: true
+        description: "Input project name"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v3
+
+      - name: echo input
+        run: |
+          echo "Input environment: ${{ inputs.environment }}"
+          echo "Input project: ${{ inputs.project }}"
