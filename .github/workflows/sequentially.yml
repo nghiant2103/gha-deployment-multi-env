@@ -1,4 +1,4 @@
-name: Build and deploy Angular app to an Azure Web App
+name: Sequentially
 
 on:
   workflow_dispatch:
