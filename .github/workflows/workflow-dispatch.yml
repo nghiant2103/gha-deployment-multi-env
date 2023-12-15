@@ -7,7 +7,7 @@ on:
         description: "Envirnment"
         type: choice
         options:
-          - ""
+          - dev
           - prod
       project:
         type: string
@@ -25,3 +25,11 @@ jobs:
         run: |
           echo "Input environment: ${{ inputs.environment }}"
           echo "Input project: ${{ inputs.project }}"
+
+      - name: ifelse
+        run: |
+          if [[ ${{ inputs.environment }} == "dev" ]]; then
+            echo "dev"
+          else
+            echo "prod"
+          fi
