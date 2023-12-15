@@ -1,0 +1,22 @@
+name: Compare json key
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    permissions:
+      contents: none
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install jq
+        run: apt-get install jq
+
+      - name: Compare
+        run: |
+          IS_DIFF=$(diff <(jq -r '[paths | join(".")]' ../../A.json) <(jq -r '[paths | join(".")]' ../../B.json))
+          [[ ! -z "$IS_DIFF" ]] && echo "Not empty" || echo "Empty"
