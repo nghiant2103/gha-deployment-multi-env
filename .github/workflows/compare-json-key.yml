@@ -20,4 +20,9 @@ jobs:
 
       - name: Compare
         run: |
-          IS_DIFF=$(diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json))
+          if [ -z "${diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json)}" ]
+          then
+            echo "No diff"
+          else
+            echo "Diff"
+          fi
