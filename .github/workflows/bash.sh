@@ -2,7 +2,7 @@
 
 echo "Compare"
 
-IS_DIFF=$(grep -xvFf <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json))
+IS_DIFF=($(grep -xvFf <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json))) || null
 echo "IS_DIFF: $IS_DIFF"
 # if [ -z "$IS_DIFF" ]
 # then
