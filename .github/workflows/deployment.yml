@@ -19,6 +19,8 @@ jobs:
     environment:
       name: ${ { inputs.target-env } }
 
+    # environment: ${{ github.ref_name }}
+
     steps:
       - run: echo "🎉 target evn ${ { inputs.target-env} }"
       - run: echo "🎉 target evn inputs.target-env"
@@ -34,7 +36,7 @@ jobs:
         run: unzip release.zip
 
       - name: "Deploy to Dev WebApp"
-        if:  inputs.target-env == 'Development'
+        if: inputs.target-env == 'Development'
         id: deploy-to-webapp-dev
         run: |
           echo "var Dev WEBAPP_NAME: $WEBAPP_NAME"
@@ -42,7 +44,7 @@ jobs:
           echo "var Dev WEBAPP_NAME_IN_SECRET: $WEBAPP_NAME_IN_SECRET"
 
       - name: "Deploy to Prod WebApp"
-        if:  inputs.target-env == 'Production'
+        if: inputs.target-env == 'Production'
         id: deploy-to-webapp-prod
         run: |
           echo "var Prod WEBAPP_NAME: $WEBAPP_NAME"
