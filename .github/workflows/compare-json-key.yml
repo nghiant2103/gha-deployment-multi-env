@@ -20,4 +20,9 @@ jobs:
 
       - name: Compare
         run: |
-          IS_DIFF=$(grep -xvFf <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json))
+          if [[ $(diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json)) ]]
+          then
+            echo "Not Empty"
+          else
+            echo "Empty"
+          fi
