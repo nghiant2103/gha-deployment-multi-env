@@ -20,9 +20,9 @@ jobs:
 
       - name: Compare
         run: |
-          if [[ $(diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json)) ]]
+          if [[ $(diff <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]')) ]]
           then
-            echo "Diff"
+            echo "$(diff -c <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]'))"
             exit 1;
           else
             echo "No diff"
