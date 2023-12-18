@@ -3,7 +3,7 @@ name: Compare json key
 on:
   push:
     branches:
-      - compare-json
+      - main
 
 jobs:
   deploy:
