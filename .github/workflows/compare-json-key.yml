@@ -21,4 +21,9 @@ jobs:
       - name: Compare
         run: |
           IS_DIFF=$(diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json))
-          [[ ! -z "$IS_DIFF" ]] && echo "Not empty" || echo "Empty"
+          if [ -z "$IS_DIFF" ]
+          then
+            echo "No diff"
+          else
+            echo "Diff"
+          fi
