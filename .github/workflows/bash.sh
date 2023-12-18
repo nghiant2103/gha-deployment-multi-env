@@ -12,7 +12,15 @@ echo "Compare"
 # #   echo "Diff"
 # # fi
 
-A=$(cat A.json)
+# A=$(cat A.json)
 
-[[ $(diff <(echo $A | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]')) ]] && echo "Diff" || echo "No diff"
-echo $?
+# [[ $(diff <(echo $A | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]')) ]] && echo "Diff" || echo "No diff"
+# echo $?
+
+if [[ $(diff <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]')) ]]
+then
+  echo "$(diff -c <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]'))"
+  exit 1;
+else
+  echo "No diff"
+fi
