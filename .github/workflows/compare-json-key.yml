@@ -3,7 +3,7 @@ name: Compare json key
 on:
   push:
     branches:
-      - compare
+      - main
 
 jobs:
   deploy:
@@ -20,9 +20,13 @@ jobs:
 
       - name: Compare
         run: |
-          if [[ $(diff <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]')) ]]
+          P=$(cat A.json)
+          A=$(echo "$P" | jq --sort-keys | jq -r '[paths | join(".")]' | sed 's/\,//g')
+          B=$(cat B.json | jq --sort-keys | jq -r '[paths | join(".")]' | sed 's/\,//g')
+
+          if [[ $(diff <(echo "$A") <(echo "$B")) ]]
           then
-            echo "$(diff -c <(cat A.json | jq -r '[paths | join(".")]') <(cat B.json | jq -r '[paths | join(".")]'))"
+            echo "$(diff -c <(echo "$A") <(echo "$B"))"
             exit 1;
           else
             echo "No diff"
