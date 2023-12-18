@@ -22,8 +22,8 @@ jobs:
         run: |
           if [[ $(diff <(jq -r '[paths | join(".")]' A.json) <(jq -r '[paths | join(".")]' B.json)) ]]
           then
-            echo "Not Empty"
+            echo "Diff"
             exit 1;
           else
-            echo "Empty"
+            echo "No diff"
           fi
